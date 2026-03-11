@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Rookie Party 2025-26</title>
+
+<!-- Link Preview / Open Graph -->
+<meta property="og:title" content="Rookie Party 2025-26">
+<meta property="og:description" content="Schedule, Budget, Scavenger Hunt & Dinner Menu">
+<meta property="og:image" content="og-image.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rookie Party 2025-26">
+<meta name="twitter:description" content="Schedule, Budget, Scavenger Hunt & Dinner Menu">
+<meta name="twitter:image" content="og-image.png">
+
+<!-- Icons -->
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- PWA / Add to Home Screen -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rookie Party">
+<meta name="theme-color" content="#1a1a2e">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #f8f9fb; color: #1a1a2e; min-height: 100vh; overflow-x: hidden; }
+
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    padding: 32px 16px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+  }
+  .header h1 { font-size: 32px; font-weight: 900; color: #fff; letter-spacing: 2px; position: relative; }
+  .header .sub { color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 4px; font-weight: 500; position: relative; }
+
+  .tab-bar {
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e8eaf0;
+    display: flex; overflow-x: auto;
+    padding: 10px 8px; gap: 6px;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex-shrink: 0; padding: 8px 16px; border-radius: 20px; border: none;
+    font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    white-space: nowrap; background: #f0f1f5; color: #6b7280;
+  }
+  .tab-btn.active { background: #1a1a2e; color: #fff; box-shadow: 0 2px 8px rgba(26,26,46,0.25); }
+
+  .content { padding: 16px; max-width: 480px; margin: 0 auto; padding-bottom: 40px; }
+
+  .card {
+    background: #fff; border-radius: 16px; padding: 20px;
+    border: 1px solid #e8eaf0; margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .card-sm {
+    background: #fff; border-radius: 12px; padding: 16px;
+    border: 1px solid #e8eaf0; margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+
+  .label { color: #9ca3af; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; }
+  .big-number { font-size: 28px; font-weight: 800; }
+  .text-blue { color: #2563eb; }
+  .text-red { color: #dc2626; }
+  .text-green { color: #059669; }
+  .text-yellow { color: #d97706; }
+  .text-gray { color: #6b7280; }
+  .text-gray-dark { color: #9ca3af; }
+  .text-dark { color: #1a1a2e; }
+  .text-sm { font-size: 13px; }
+  .text-xs { font-size: 11px; }
+  .font-bold { font-weight: 700; }
+  .font-medium { font-weight: 500; }
+  .mt-1 { margin-top: 4px; }
+  .mt-2 { margin-top: 8px; }
+  .mt-3 { margin-top: 12px; }
+  .text-center { text-align: center; }
+
+  .progress-bar { width: 100%; height: 10px; background: #e8eaf0; border-radius: 999px; overflow: hidden; margin: 12px 0; }
+  .progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #2563eb, #7c3aed); transition: width 0.5s; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-box { background: #f8f9fb; border-radius: 12px; padding: 14px; text-align: center; border: 1px solid #e8eaf0; }
+
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  .row-start { display: flex; align-items: flex-start; gap: 12px; }
+
+  .icon-circle {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: #f0f1f5; border: 2px solid #e8eaf0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .timeline-line { width: 2px; height: 28px; background: #e0e2e8; margin: 4px auto; }
+
+  .timer-display { font-size: 48px; font-family: 'Inter', monospace; font-weight: 900; color: #1a1a2e; letter-spacing: -1px; }
+  .timer-red { color: #dc2626 !important; }
+  .btn {
+    padding: 10px 24px; border-radius: 10px; border: none;
+    font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.15s;
+  }
+  .btn-green { background: #059669; color: #fff; }
+  .btn-green:active { background: #047857; }
+  .btn-red { background: #dc2626; color: #fff; }
+  .btn-red:active { background: #b91c1c; }
+  .btn-gray { background: #e8eaf0; color: #374151; }
+  .btn-gray:active { background: #d1d5db; }
+  .btn-group { display: flex; gap: 8px; justify-content: center; margin-top: 14px; }
+
+  .team-toggle { display: flex; background: #f0f1f5; border-radius: 12px; padding: 4px; }
+  .team-toggle button {
+    flex: 1; padding: 10px; border-radius: 8px; border: none;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+    transition: all 0.2s; background: transparent; color: #9ca3af;
+  }
+  .team-toggle button.active-blue { background: #2563eb; color: #fff; box-shadow: 0 2px 6px rgba(37,99,235,0.3); }
+  .team-toggle button.active-red { background: #dc2626; color: #fff; box-shadow: 0 2px 6px rgba(220,38,38,0.3); }
+
+  .task-item {
+    border-radius: 12px; padding: 14px;
+    border: 1px solid #e8eaf0; background: #fff;
+    margin-bottom: 8px; cursor: pointer; transition: all 0.15s;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .task-item:active { transform: scale(0.98); }
+  .task-item.done { background: #ecfdf5; border-color: #a7f3d0; }
+  .task-left { display: flex; align-items: center; gap: 12px; flex: 1; }
+  .check-circle {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 2px solid #d1d5db; display: flex; align-items: center;
+    justify-content: center; font-size: 12px; flex-shrink: 0; color: #fff;
+  }
+  .check-circle.checked { background: #059669; border-color: #059669; }
+  .task-title { font-size: 14px; font-weight: 600; color: #1a1a2e; }
+  .task-title.struck { text-decoration: line-through; color: #059669; }
+  .task-desc { color: #9ca3af; }
+  .points-badge { font-size: 13px; font-weight: 800; flex-shrink: 0; margin-left: 8px; }
+
+  .score-card { border-radius: 16px; padding: 16px; text-align: center; }
+  .score-card.blue { background: #eff6ff; border: 1px solid #bfdbfe; }
+  .score-card.red { background: #fef2f2; border: 1px solid #fecaca; }
+
+  .menu-section { margin-bottom: 16px; }
+  .menu-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .menu-item { margin-bottom: 8px; font-size: 14px; }
+  .menu-item strong { color: #1a1a2e; }
+  .menu-item span { color: #9ca3af; }
+
+  .info-box { border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+  .info-box.green { background: #ecfdf5; border: 1px solid #a7f3d0; }
+  .info-box.yellow { background: #fffbeb; border: 1px solid #fde68a; }
+
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 50; padding: 16px;
+    backdrop-filter: blur(4px);
+  }
+  .modal {
+    background: #fff; border-radius: 20px; padding: 24px;
+    max-width: 320px; width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+  .modal h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #1a1a2e; }
+  .modal p { color: #6b7280; font-size: 14px; margin-bottom: 16px; }
+  .modal .btn-group { margin-top: 0; }
+
+  .hidden { display: none; }
+
+  .dinner-header {
+    text-align: center; padding: 20px; margin-bottom: 16px;
+    background: linear-gradient(135deg, #1a1a2e, #0f3460);
+    border-radius: 16px; color: #fff;
+  }
+  .dinner-header h2 { font-size: 22px; font-weight: 800; }
+  .dinner-header .price { color: #fbbf24; font-size: 14px; font-weight: 700; margin-top: 4px; }
+
+  .expense-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .expense-icon.food { background: #fef3c7; }
+  .expense-icon.transport { background: #dbeafe; }
+
+  @media (max-width: 380px) {
+    .timer-display { font-size: 38px; }
+    .big-number { font-size: 24px; }
+    .header h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>ROOKIE PARTY</h1>
+  <div class="sub">2025-26 Season</div>
+</div>
+
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" onclick="showTab('schedule')">📋 Schedule</button>
+  <button class="tab-btn" onclick="showTab('budget')">💰 Budget</button>
+  <button class="tab-btn" onclick="showTab('hunt')">🏒 Hunt</button>
+  <button class="tab-btn" onclick="showTab('dinner')">🍽️ Dinner</button>
+  <button class="tab-btn" onclick="showTab('teams')">👥 Teams</button>
+</div>
+
+<div class="content">
+
+  <!-- SCHEDULE TAB -->
+  <div id="tab-schedule">
+    <div class="row-start" style="margin-bottom:4px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div class="icon-circle">🏠</div><div class="timeline-line"></div>
+      </div>
+      <div style="padding-top:2px"><div class="text-xs text-blue font-bold">12:00 PM</div><div class="font-bold text-sm">Meet at Apartments</div><div class="text-xs text-gray-dark">Games & challenges kick off</div></div>
+    </div>
+    <div class="row-start" style="margin-bottom:4px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div class="icon-circle">🚌</div><div class="timeline-line"></div>
+      </div>
+      <div style="padding-top:2px"><div class="text-xs text-blue font-bold">2:00 PM</div><div class="font-bold text-sm">Bus Leaves APT</div><div class="text-xs text-gray-dark">One-way party bus downtown</div></div>
+    </div>
+    <div class="row-start" style="margin-bottom:4px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div class="icon-circle">🏒</div><div class="timeline-line"></div>
+      </div>
+      <div style="padding-top:2px"><div class="text-xs text-blue font-bold">2:30 PM</div><div class="font-bold text-sm">Scavenger Hunt Starts</div><div class="text-xs text-gray-dark">Rookies split — Team Bukes vs Team Reggie</div></div>
+    </div>
+    <div class="row-start" style="margin-bottom:4px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div class="icon-circle">🍻</div><div class="timeline-line"></div>
+      </div>
+      <div style="padding-top:2px"><div class="text-xs text-blue font-bold">2:30 PM</div><div class="font-bold text-sm">Vets Free Time</div><div class="text-xs text-gray-dark">Vets do own thing, buy own drinks</div></div>
+    </div>
+    <div class="row-start" style="margin-bottom:4px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div class="icon-circle">⏰</div><div class="timeline-line"></div>
+      </div>
+      <div style="padding-top:2px"><div class="text-xs text-blue font-bold">5:30 PM</div><div class="font-bold text-sm">Scavenger Hunt Ends</div><div class="text-xs text-gray-dark">Teams report back, scores tallied</div></div>
+    </div>
+    <div class="row-start" style="margin-bottom:4px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div class="icon-circle">🥩</div><div class="timeline-line"></div>
+      </div>
+      <div style="padding-top:2px"><div class="text-xs text-blue font-bold">6:00 PM</div><div class="font-bold text-sm">Team Dinner @ Spencer's</div><div class="text-xs text-gray-dark">Timpanogos Menu — $100/person</div></div>
+    </div>
+    <div class="row-start" style="margin-bottom:4px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div class="icon-circle">🎉</div><div class="timeline-line"></div>
+      </div>
+      <div style="padding-top:2px"><div class="text-xs text-blue font-bold">8:30 PM</div><div class="font-bold text-sm">Lake Effect</div><div class="text-xs text-gray-dark">Remaining budget goes to the tab</div></div>
+    </div>
+    <div class="row-start">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div class="icon-circle">🚗</div>
+      </div>
+      <div style="padding-top:2px"><div class="text-xs text-blue font-bold">Late</div><div class="font-bold text-sm">Uber Home</div><div class="text-xs text-gray-dark">Stay if Lake is buzzing</div></div>
+    </div>
+  </div>
+
+  <!-- BUDGET TAB -->
+  <div id="tab-budget" class="hidden">
+    <div class="card">
+      <div class="row"><span class="label">Total Budget</span><span class="big-number text-dark">$7,000</span></div>
+      <div class="text-xs text-gray-dark mt-1">$5,400 rookie dues + $1,700 fine fund</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:62.4%"></div></div>
+      <div class="grid-2">
+        <div class="stat-box"><div class="big-number text-red" style="font-size:22px">$4,370</div><div class="text-xs text-gray-dark">Committed</div></div>
+        <div class="stat-box"><div class="big-number text-green" style="font-size:22px">$2,630</div><div class="text-xs text-gray-dark">For Drinks</div></div>
+      </div>
+    </div>
+
+    <div class="card-sm row">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="expense-icon food">🍽️</div>
+        <div><div class="font-bold text-sm">Dinner (Spencer's)</div><div class="text-xs text-gray-dark">$100/person + tax & tip</div></div>
+      </div>
+      <div class="font-bold text-dark">$3,700</div>
+    </div>
+    <div class="card-sm row">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="expense-icon transport">🚌</div>
+        <div><div class="font-bold text-sm">Party Bus</div><div class="text-xs text-gray-dark">1-way to downtown</div></div>
+      </div>
+      <div class="font-bold text-dark">$670</div>
+    </div>
+
+    <div class="info-box green mt-3">
+      <div class="text-green font-bold text-sm" style="margin-bottom:6px">Drinks Budget</div>
+      <div class="text-xs">
+        <div class="row" style="margin-bottom:4px"><span class="text-gray">Vets (during scavenger hunt)</span><span class="text-gray font-medium">Pay own tab</span></div>
+        <div class="row"><span class="text-gray">Lake Effect tab</span><span class="text-green font-bold" style="font-size:14px">~$2,630</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCAVENGER HUNT TAB -->
+  <div id="tab-hunt" class="hidden">
+    <div class="card text-center">
+      <div class="label">Hunt Timer</div>
+      <div class="timer-display mt-1" id="timerDisplay">3:00:00</div>
+      <div class="btn-group">
+        <button class="btn btn-green" id="timerBtn" onclick="toggleTimer()">Start</button>
+        <button class="btn btn-gray" onclick="resetTimer()">Reset</button>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:12px">
+      <div class="score-card blue">
+        <div class="label">Team Bukes</div>
+        <div class="big-number text-blue mt-1" id="bukesScore">0</div>
+        <div class="text-xs text-gray-dark" id="bukesPct">0% complete</div>
+      </div>
+      <div class="score-card red">
+        <div class="label">Team Reggie</div>
+        <div class="big-number text-red mt-1" id="reggieScore">0</div>
+        <div class="text-xs text-gray-dark" id="reggiePct">0% complete</div>
+      </div>
+    </div>
+
+    <div class="team-toggle" style="margin-bottom:12px">
+      <button id="toggle-bukes" class="active-blue" onclick="switchTeam('bukes')">Team Bukes</button>
+      <button id="toggle-reggie" onclick="switchTeam('reggie')">Team Reggie</button>
+    </div>
+
+    <div id="taskList"></div>
+  </div>
+
+  <!-- DINNER TAB -->
+  <div id="tab-dinner" class="hidden">
+    <div class="dinner-header">
+      <h2>Spencer's Steaks & Chops</h2>
+      <div class="price">Timpanogos Menu — $100/person</div>
+    </div>
+    <div class="card">
+      <div class="menu-section">
+        <div class="menu-label text-blue">First Course (choice of)</div>
+        <div class="menu-item"><strong>Grilled Caesar</strong> <span>— romaine, focaccia croutons, anchovies, parmes</span></div>
+        <div class="menu-item"><strong>Steakhouse Wedge</strong> <span>— baby iceberg, tomato pesto, bacon jam, blue cheese</span></div>
+      </div>
+      <div class="menu-section">
+        <div class="menu-label text-red">Main Course (choice of)</div>
+        <div class="text-xs text-gray-dark" style="margin-bottom:8px">Served with mashed potatoes & asparagus</div>
+        <div class="menu-item"><strong>8oz Filet Mignon</strong> <span>— Prime</span></div>
+        <div class="menu-item"><strong>14oz New York Strip</strong> <span>— Prime</span></div>
+        <div class="menu-item"><strong>King Salmon</strong> <span>— with lemon</span></div>
+        <div class="menu-item"><strong>Mushroom Stuffed Chicken</strong> <span>— airline chicken</span></div>
+        <div class="menu-item"><strong>Pappardelle</strong> <span>— mushroom bolognese, ricotta</span></div>
+      </div>
+      <div class="menu-section" style="margin-bottom:0">
+        <div class="menu-label text-yellow">Dessert</div>
+        <div class="menu-item"><strong>Pumpkin Pie Cheesecake</strong> <span>— graham crust, bourbon butterscotch</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAMS TAB -->
+  <div id="tab-teams" class="hidden">
+    <div class="card text-center">
+      <div style="font-size:22px;font-weight:800;color:#1a1a2e">14 Rookies</div>
+      <div class="text-gray text-sm mt-1">Split into 2 teams of 7</div>
+      <div class="grid-2 mt-3">
+        <div class="score-card blue" style="padding:16px">
+          <div class="text-blue font-bold">Team Bukes</div>
+          <div class="text-xs text-gray mt-1">Captain: Bukes</div>
+          <div class="text-xs text-gray-dark mt-2">7 rookies</div>
+        </div>
+        <div class="score-card red" style="padding:16px">
+          <div class="text-red font-bold">Team Reggie</div>
+          <div class="text-xs text-gray mt-1">Captain: Reggie</div>
+          <div class="text-xs text-gray-dark mt-2">7 rookies</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-box yellow">
+      <div class="text-yellow font-bold text-sm" style="margin-bottom:8px">Rookie Dues</div>
+      <div class="grid-2 text-sm">
+        <div class="row"><span class="text-gray">AHL</span><span class="font-bold">$600/player</span></div>
+        <div class="row"><span class="text-gray">ECHL</span><span class="font-bold">$400/player</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Confirm Modal -->
+<div class="modal-overlay hidden" id="confirmModal" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h3 id="modalTitle">Mark as completed?</h3>
+    <p id="modalDesc">Task name for Team</p>
+    <div class="btn-group">
+      <button class="btn btn-gray" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-green" onclick="confirmTask()">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TASKS = [
+  { id:1, title:"Team Photo with a Stranger", desc:"Get a photo with someone who has no idea what's going on", pts:10 },
+  { id:2, title:"Karaoke Performance", desc:"One teammate sings a full song at a bar with karaoke", pts:25 },
+  { id:3, title:"Free Drink from a Stranger", desc:"Convince a stranger to buy someone on the team a drink", pts:20 },
+  { id:4, title:"Dance Battle", desc:"Challenge someone outside the team to a dance-off (video proof)", pts:30 },
+  { id:5, title:"Jersey Selfie", desc:"Find someone wearing any sports jersey and get a selfie", pts:10 },
+  { id:6, title:"Bartender's Choice", desc:"Have the bartender make up a custom drink, everyone tries it", pts:15 },
+  { id:7, title:"Celebrity Lookalike", desc:"Find someone who looks like a celebrity and get a photo", pts:15 },
+  { id:8, title:"Team Pyramid", desc:"Build a human pyramid in a public place (photo proof)", pts:25 },
+  { id:9, title:"Bar Trivia Win", desc:"Win a round of trivia at any bar or challenge a group", pts:20 },
+  { id:10, title:"Pickup Line Challenge", desc:"Use the worst pickup line possible on camera (video proof)", pts:15 },
+  { id:11, title:"Get a Phone Number", desc:"Get a real phone number from a stranger (with their consent)", pts:20 },
+  { id:12, title:"Arm Wrestling Match", desc:"Challenge a bouncer or bartender to arm wrestle", pts:25 },
+  { id:13, title:"Mystery Shot", desc:"Order the bartender's most hated shot — entire team takes it", pts:20 },
+  { id:14, title:"Sing the National Anthem", desc:"Perform the national anthem in a public space", pts:30 },
+  { id:15, title:"Matching Outfits Runway", desc:"Do a runway walk in your matching team outfits in a crowded area", pts:15 },
+  { id:16, title:"Bachelorette Party Crashers", desc:"Find a bachelorette party and get a group photo", pts:25 },
+  { id:17, title:"Tip the Street Performer", desc:"Find a street performer, tip them, and join the act", pts:20 },
+  { id:18, title:"Pushup Challenge", desc:"Entire team does 20 pushups in the middle of a bar", pts:15 },
+  { id:19, title:"Convince Someone You're Famous", desc:"Get a stranger to believe one of you is a celebrity", pts:30 },
+  { id:20, title:"Celly in Public", desc:"Do a full hockey celly (including glass bang) in public", pts:20 },
+];
+
+const MAX_POINTS = TASKS.reduce((s,t) => s + t.pts, 0);
+
+let scores = { bukes: {}, reggie: {} };
+let activeTeam = 'bukes';
+let timerRunning = false;
+let timeLeft = 3 * 60 * 60;
+let timerInterval = null;
+let pendingTask = null;
+
+function showTab(id) {
+  ['schedule','budget','hunt','dinner','teams'].forEach(t => {
+    document.getElementById('tab-' + t).classList.toggle('hidden', t !== id);
+  });
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    const tabs = ['schedule','budget','hunt','dinner','teams'];
+    btn.classList.toggle('active', tabs[i] === id);
+  });
+}
+
+function formatTime(s) {
+  const h = Math.floor(s/3600);
+  const m = Math.floor((s%3600)/60);
+  const sec = s%60;
+  return h + ':' + String(m).padStart(2,'0') + ':' + String(sec).padStart(2,'0');
+}
+
+function updateTimer() {
+  const el = document.getElementById('timerDisplay');
+  el.textContent = formatTime(timeLeft);
+  el.classList.toggle('timer-red', timeLeft < 600);
+}
+
+function toggleTimer() {
+  timerRunning = !timerRunning;
+  const btn = document.getElementById('timerBtn');
+  if (timerRunning) {
+    btn.textContent = 'Pause';
+    btn.className = 'btn btn-red';
+    timerInterval = setInterval(() => {
+      if (timeLeft > 0) { timeLeft--; updateTimer(); }
+      else { clearInterval(timerInterval); timerRunning = false; btn.textContent = 'Start'; btn.className = 'btn btn-green'; }
+    }, 1000);
+  } else {
+    btn.textContent = 'Start';
+    btn.className = 'btn btn-green';
+    clearInterval(timerInterval);
+  }
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  timeLeft = 3 * 60 * 60;
+  updateTimer();
+  const btn = document.getElementById('timerBtn');
+  btn.textContent = 'Start';
+  btn.className = 'btn btn-green';
+}
+
+function getTeamScore(team) {
+  return Object.keys(scores[team]).reduce((s, id) => {
+    const t = TASKS.find(x => x.id === parseInt(id));
+    return s + (t ? t.pts : 0);
+  }, 0);
+}
+
+function updateScores() {
+  const bs = getTeamScore('bukes'), rs = getTeamScore('reggie');
+  document.getElementById('bukesScore').textContent = bs;
+  document.getElementById('reggieScore').textContent = rs;
+  document.getElementById('bukesPct').textContent = Math.round((bs/MAX_POINTS)*100) + '% complete';
+  document.getElementById('reggiePct').textContent = Math.round((rs/MAX_POINTS)*100) + '% complete';
+}
+
+function switchTeam(team) {
+  activeTeam = team;
+  document.getElementById('toggle-bukes').className = team === 'bukes' ? 'active-blue' : '';
+  document.getElementById('toggle-reggie').className = team === 'reggie' ? 'active-red' : '';
+  renderTasks();
+}
+
+function renderTasks() {
+  const list = document.getElementById('taskList');
+  list.innerHTML = '';
+  TASKS.forEach(task => {
+    const done = !!scores[activeTeam][task.id];
+    const div = document.createElement('div');
+    div.className = 'task-item' + (done ? ' done' : '');
+    div.onclick = () => openModal(task);
+    div.innerHTML = `
+      <div class="task-left">
+        <div class="check-circle ${done ? 'checked' : ''}">${done ? '✓' : ''}</div>
+        <div>
+          <div class="task-title ${done ? 'struck' : ''}">${task.title}</div>
+          <div class="text-xs task-desc">${task.desc}</div>
+        </div>
+      </div>
+      <div class="points-badge ${done ? 'text-green' : 'text-yellow'}">+${task.pts}</div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+function openModal(task) {
+  pendingTask = task;
+  const done = !!scores[activeTeam][task.id];
+  const teamName = activeTeam === 'bukes' ? 'Team Bukes' : 'Team Reggie';
+  document.getElementById('modalTitle').textContent = done ? 'Remove completion?' : 'Mark as completed?';
+  document.getElementById('modalDesc').textContent = task.title + ' for ' + teamName;
+  document.getElementById('confirmModal').classList.remove('hidden');
+}
+
+function closeModal() {
+  document.getElementById('confirmModal').classList.add('hidden');
+  pendingTask = null;
+}
+
+function confirmTask() {
+  if (!pendingTask) return;
+  if (scores[activeTeam][pendingTask.id]) {
+    delete scores[activeTeam][pendingTask.id];
+  } else {
+    scores[activeTeam][pendingTask.id] = true;
+  }
+  updateScores();
+  renderTasks();
+  closeModal();
+}
+
+renderTasks();
+updateScores();
+</script>
+</body>
+</html>
